@@ -1,4 +1,4 @@
-**Quantitative Comparison on Real-World Dynamic Grasping (Bowl)** 
+**Quantitative Comparison on Real-World Dynamic Grasping (Bowl) — Average Results of 30 Trials** 
 All metrics are averaged across trials. **Jerk** values are in \(\text{k·rad}^2\) (\(\text{k}=10^7\)).
 
 | Method          | Success (%) ↑ | Path L (m) ↓ | Jerk J~ (k·rad²) ↓ | Dist. D (rad) ↓ | Max Jump J (rad) ↓ |
