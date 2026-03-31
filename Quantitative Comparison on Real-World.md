@@ -34,7 +34,7 @@ All metrics are averaged across trials. **Jerk** values are in $\text{k·rad}^2$
 
 
 **Quantitative Comparison on Real-World Static Grasping in Pose 2 (Cup) — Average Results of 30 Trials**
-All metrics are averaged across trials. **Jerk** values are in $\text{k·rad}^2$ ($\text{k}=10^7$).
+All metrics are averaged across trials. **Jerk** values are in $\text{k·rad}^2$ (where $\text{k}=10^7$).
 
 | Method          | Success (%) ↑ | Path L (m) ↓ | Jerk $\tilde{J}$ (k·rad²) ↓ | Dist. D (rad) ↓ | Max Jump J (rad) ↓ |
 |-----------------|---------------|--------------|-------------------------------|-----------------|--------------------|
