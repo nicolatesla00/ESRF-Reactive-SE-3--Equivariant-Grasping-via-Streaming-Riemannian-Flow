@@ -1,0 +1,71 @@
+data:
+  train:
+    dataset:
+      name: full
+      obj_types: [Laptop, Mug]
+      augmentation: SO3
+      scale: 8
+    batch_size: 4
+    num_workers: 8
+  val:
+    dataset:
+      name: full
+      obj_types: [Laptop, Mug]
+      augmentation: SO3
+      scale: 8
+      num_rots: 3
+    batch_size: 4
+    num_workers: 8
+  test:
+    dataset:
+      name: full
+      obj_types: [Laptop, Mug]
+      augmentation: SO3
+      scale: 8
+      num_rots: 3
+    batch_size: 4
+    num_workers: 8
+model:
+  name: equigraspflow
+  p_uncond: 0.2
+  guidance: 2.0
+  # Streaming Flow Policy parameters
+  sigma_0: 0.01  # Standard deviation for conditional initial distribution
+  k: 0.1  # Stabilizing gain (k > 0 encourages convergence to target)
+  streaming: true  # Enable streaming mode
+  init_dist:
+    name: SE3_conditional_normal  # Use conditional distribution (from last pose)
+  encoder:
+    name: vn_dgcnn_enc
+    num_neighbors: 40
+    dims: [1, 21, 21, 42, 85, 170, 341]
+    use_bn: False
+  vector_field:
+    name: vn_vf
+    dims: [346, 256, 256, 128, 128, 128, 2]
+    use_bn: False
+  ode_solver:
+    name: SE3_Streaming_RK_mk  # Use streaming ODE solver
+    num_steps: 20
+    output_interval: 1  # Output every step (set to N to output every N steps)
+losses:
+- name: mse
+optimizer:
+  name: adam
+  lr: 0.0001
+  weight_decay: 1.0e-6
+metrics:
+- name: emd
+  type: SE3
+trainer:
+  name: grasp_full
+  criteria:
+  - name: emd
+    better: lower
+  num_epochs: 40000
+  print_interval: 100
+  val_interval: 1000
+  eval_interval: 1000
+  vis_interval: 1000
+  save_interval: 10000
+
